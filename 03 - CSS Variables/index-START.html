@@ -9,11 +9,12 @@
 
   <div class="controls">
     <label for="spacing">Spacing:</label>
+    <!-- input type range gives you the bar -->
     <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
 
     <label for="blur">Blur:</label>
     <input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
-
+    <!-- input type color gives you the color picker -->
     <label for="base">Base Color</label>
     <input id="base" type="color" name="base" value="#ffc600">
   </div>
@@ -21,7 +22,25 @@
   <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
 
   <style>
+  /*you declare css variables on the elements and root is the highest element like html*/
+  /*variables are declared like '--' and when they have to be used we say var(--variableName)*/
+  :root{
+    --base: "#ffc600";
+    --spacing: 10px;
+    --blur:10px;
+  }
 
+  img{
+    padding: var(--spacing);
+    background: var(--base);
+    filter: blur(var(--blur));
+
+  }
+
+  .h1{
+    color: var(--base);
+  }
+  
     /*
       misc styles, nothing to do with CSS variables
     */
@@ -45,6 +64,21 @@
   </style>
 
   <script>
+  //querySelectorAll gives a nodelist therefore it doesn;t have all the good functions that come with array, so you convert it into an array
+  const inputs= document.querySelectorAll('.controls input');
+
+  function handleUpdate(){
+    //data set is an object that holds all data attributes
+    //great way to give nothing in the value as  data-sizing is not described for color
+    const suffix=  this.dataset.sizing || '';
+
+    document.documentElement.style.setProperty(`--${this.name}`,this.value+ suffix);
+
+  }
+
+  inputs.forEach(input=>input.addEventListener('change',handleUpdate));
+
+
   </script>
 
 </body>
