@@ -29,7 +29,7 @@
     .item:last-child {
       border-bottom:0;
     }
-
+/* PLUS'+' It is Adjacent sibling combinator. It combines two sequences of simple selectors having the same parent and the second one must come IMMEDIATELY after the first.*/
 
     input:checked + p {
       background:#F9F9F9;
@@ -99,6 +99,33 @@
   </div>
 
 <script>
+const checkboxes= document.querySelectorAll('.inbox input[type="checkbox"]');
+let lastChecked;
+
+function handleCheck(e){
+
+	let inBetween=false;
+	if(e.shiftKey && this.checked){
+		checkboxes.forEach(checkbox=>{
+
+			console.log(checkbox)
+			if(checkbox===this||checkbox===lastChecked){
+				inBetween=!inBetween;
+			}
+			if(inBetween){
+				checkbox.checked=true;
+			}
+		});
+
+	}
+
+	//Using THIS doesnot let you use ids like in android, THIS is a very usefult tool in such cases
+
+
+	lastChecked=this;
+}
+
+checkboxes.forEach(checkbox=>checkbox.addEventListener('click',handleCheck));
 </script>
 </body>
 </html>
