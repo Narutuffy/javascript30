@@ -18,28 +18,52 @@
     }
 
     // Regular
+    console.log('Hello');
 
     // Interpolated
+    console.log('Hello I am a %s string','poop');
+
 
     // Styled
-
+    console.log('%c I am a great text','font-size:30px');
     // warning!
+    //cosole.warn()
 
     // Error :|
-
+    //console.error
+    
     // Info
+    //console.info
 
     // Testing
+    //console.assert(someconditionfortesting,'That is wrong');
 
     // clearing
+    //console.clear;
 
     // Viewing DOM Elements
+    const p= document.querySelector('p');
+    console.log(p);
+    console.dir(p);
 
     // Grouping together
+    dogs.forEach(dog=>{
 
+      console.group(`${dog.name}`)
+      console.log(`This is ${dog.name}`);
+      console.log(`It is ${dog.age} years old`);
+      console.log(`That is ${dog.age*10} dog years old `);
+      console.groupEnd(`${dog.name}`);
+
+    })
     // counting
+    //comsole.count('hey');
 
-    // timing
+    // timing //THIS IS FOR FETCH FUNTION NOT TIMING FUNCTION
+
+    console.table(dogs);
+
+
 
   </script>
 </body>
