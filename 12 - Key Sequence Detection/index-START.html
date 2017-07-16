@@ -7,6 +7,18 @@
 </head>
 <body>
 <script>
+const pressed=[];
+const secretCode='vamsi';
+window.addEventListener('keyup',(e)=>{
+ 	console.log(e.key);
+ 	pressed.push(e.key);
+ 	//freaking genius move for splicing, as we have a secret code of particular length and we just want to check that much of length in our pressed array,  we splice the array from behind to the size of the secret code
+ 	pressed.splice(-secretCode.length-1,pressed.length-secretCode.length);
+ 	if(pressed.join('').includes(secretCode)){
+ 		cornify_add(); 		
+ 	}
+ 	console.log(pressed);
+ })
 </script>
 </body>
 </html>
